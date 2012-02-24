@@ -63,6 +63,7 @@ $.getJSON('pac_trigrams.json', function (data) {
 			FB.ui({
 				method: 'feed',
 				link: 'http://tdicola.github.com/visualizations/pacnamegen.html',
+				picture: 'http://tdicola.github.com/visualizations/pac_names_mix_small.png',
 				name: 'Random PAC Generator',
 				caption: 'I just generated:',
 				description: $('#pacnamegen').text(),

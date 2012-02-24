@@ -59,31 +59,16 @@ $.getJSON('pac_trigrams.json', function (data) {
 	});
 
 	$('#sharetofacebook-button').click(function () {
-		FB.getLoginStatus(function (response) {
-			if (response.status === 'connected') {
-				FB.ui({
-					method: 'feed',
-					link: 'http://tdicola.github.com/visualizations/pacnamegen.html',
-					picture: 'http://tdicola.github.com/visualizations/pac_names_mix_small.png',
-					name: 'Random PAC Generator',
-					caption: 'I just generated:',
-					description: $('#pacnamegen').text(),
-					redirect_uri: 'http://tdicola.github.com/visualizations/pacnamegen.html'
-				}, function (response) {});
-			} else {
-				FB.login(function (response) {
-					FB.ui({
-						method: 'feed',
-						link: 'http://tdicola.github.com/visualizations/pacnamegen.html',
-						picture: 'http://tdicola.github.com/visualizations/pac_names_mix_small.png',
-						name: 'Random PAC Generator',
-						caption: 'I just generated:',
-						description: $('#pacnamegen').text(),
-						redirect_uri: 'http://tdicola.github.com/visualizations/pacnamegen.html'
-					}, function (response) {});
-				}, { scope: 'publish_stream'});
-			}
-		});
-
+		FB.login(function (response) {
+			FB.ui({
+				method: 'feed',
+				link: 'http://tdicola.github.com/visualizations/pacnamegen.html',
+				picture: 'http://tdicola.github.com/visualizations/pac_names_mix_small.png',
+				name: 'Random PAC Generator',
+				caption: 'I just generated:',
+				description: $('#pacnamegen').text(),
+				redirect_uri: 'http://tdicola.github.com/visualizations/pacnamegen.html'
+			}, function (response) {});
+		}, { scope: 'publish_stream'});
 	});
 });

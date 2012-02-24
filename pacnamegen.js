@@ -64,7 +64,7 @@ $.getJSON('pac_trigrams.json', function (data) {
 				method: 'feed',
 				link: 'http://tdicola.github.com/visualizations/pacnamegen.html',
 				picture: 'http://tdicola.github.com/visualizations/pac_names_mix_small.png',
-				name: 'Random PAC Generator',
+				name: 'Political Action Committee Name Generator',
 				caption: 'I just generated:',
 				description: $('#pacnamegen').text(),
 				redirect_uri: 'http://tdicola.github.com/visualizations/pacnamegen.html'

@@ -78,20 +78,17 @@ $.getJSON('pac_trigrams.json', function (data) {
 		//			'I just generated:',
 		//			$('#pacnamegen').text(),
 		//			'http://tdicola.github.com/');
-		FB.login(function (response) {}, {scope: 'publish_stream'});
+		//FB.login(function (response) {}, {scope: 'publish_stream'});
 		//FB.login(function (response) {
-			//FB.ui({
-			//	method: 'feed',
-			//	link: 'http://tdicola.github.com/',
-			//	picture: 'http://fbrell.com/f8.jpg',
-			//	name: 'Random PAC Generator',
-			//	caption: 'I just generated:',
-			//	description: $('#pacnamegen').text(),
-			//	redirect_uri: 'http://tdicola.github.com/'
-			//}, function (response) {});
+			FB.ui({
+				method: 'feed',
+				link: 'http://tdicola.github.com/',
+				picture: 'http://fbrell.com/f8.jpg',
+				name: 'Random PAC Generator',
+				caption: 'I just generated:',
+				description: $('#pacnamegen').text(),
+				redirect_uri: 'http://tdicola.github.com/'
+			}, function (response) {});
 		//}, { perms: 'publish_stream'});
-
-
-		// What about using self.close() here? http://www.javascript-coder.com/window-popup/javascript-window-close.phtml
 	});
 });

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Random PAC Generator</title>
+		<link rel="stylesheet" href="css/bootstrap.css">
+		<link rel="stylesheet" href="pacnamegen.css">
+		<script src="js/jquery-1.7.1.min.js"></script>
+		<script src="pacnamegen.js"></script>
+		<script src='http://connect.facebook.net/en_US/all.js'></script>
+		<script>
+			FB.init({appId: '261223303952102', status: true, cookie: true, xfbml: true});
+		</script>
+		<div id="fb-root"></div>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="span12">
+					<h2>Random PAC (Political Action Committee) Name Generator</h2>
+					<div class="well">
+						<h2 id="pacnamegen"></h2>
+					</div>
+					<div class="row">
+						<div class="span3">
+							<button id="pacnamegen-button" class="btn-success btn-large">Generate New Name</button>
+						</div>
+						<div class="span2 offset7">
+							<button id="sharetofacebook-button" class="btn">Share to Facebook</button>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="span12">
+					<hr />
+					<h2>PAC Name Word Cloud</h2>
+					<p><img src="pac_names_mix.png"/></p>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="span12">
+				<p>Created by Tony DiCola with data from the FEC.</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

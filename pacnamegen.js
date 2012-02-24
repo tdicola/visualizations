@@ -48,18 +48,6 @@ function genRandomText(trigrams, minWords, maxWords) {
 	return text;
 }
 
-function facebookShareDialog(app_id, link, name, caption, description, redirect_uri) {
-	var	url = 'https://www.facebook.com/dialog/feed?app_id=' + app_id +
-			  '&link=' + link +
-			  '&name=' + name +
-			  '&caption=' + caption +
-			  '&description=' + description;// +
-			  //'&redirect_uri=' + redirect_uri;
-	window.open(url,
-				'Share to Facebook',
-				'height=450, width=1000, menubar=0, location=0, status=0, directories=0, toolbar=0, resizable=1');
-}
-
 // Load the tri-gram dataset and generate a random PAC name.
 $.getJSON('pac_trigrams.json', function (data) {
 	trigrams = data;
@@ -70,24 +58,15 @@ $.getJSON('pac_trigrams.json', function (data) {
 		$('#pacnamegen').text(genRandomText(trigrams, 5, 8));
 	});
 
-	FB.init({appId: '261223303952102', status: true, cookie: true, xfbml: true});
 	$('#sharetofacebook-button').click(function () {
-		//facebookShareDialog('261223303952102',
-		//			'http://tdicola.github.com/',
-		//			'Random PAC Generator',
-		//			'I just generated:',
-		//			$('#pacnamegen').text(),
-		//			'http://tdicola.github.com/');
-		//FB.login(function (response) {}, {scope: 'publish_stream'});
 		FB.login(function (response) {
 			FB.ui({
 				method: 'feed',
-				link: 'http://tdicola.github.com/',
-				picture: 'http://fbrell.com/f8.jpg',
+				link: 'http://tdicola.github.com/visualizations/pacnamegen.html',
 				name: 'Random PAC Generator',
 				caption: 'I just generated:',
 				description: $('#pacnamegen').text(),
-				redirect_uri: 'http://tdicola.github.com/'
+				redirect_uri: 'http://tdicola.github.com/visualizations/pacnamegen.html'
 			}, function (response) {});
 		}, { scope: 'publish_stream'});
 	});

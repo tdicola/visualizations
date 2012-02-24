@@ -79,7 +79,7 @@ $.getJSON('pac_trigrams.json', function (data) {
 		//			$('#pacnamegen').text(),
 		//			'http://tdicola.github.com/');
 		//FB.login(function (response) {}, {scope: 'publish_stream'});
-		//FB.login(function (response) {
+		FB.login(function (response) {
 			FB.ui({
 				method: 'feed',
 				link: 'http://tdicola.github.com/',
@@ -89,6 +89,6 @@ $.getJSON('pac_trigrams.json', function (data) {
 				description: $('#pacnamegen').text(),
 				redirect_uri: 'http://tdicola.github.com/'
 			}, function (response) {});
-		//}, { perms: 'publish_stream'});
+		}, { scope: 'publish_stream'});
 	});
 });

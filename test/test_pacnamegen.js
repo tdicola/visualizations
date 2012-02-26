@@ -1,3 +1,8 @@
+// test_pacnamegen.js by Tony DiCola
+// 2-25-2012
+//
+// Unit tests for trigram-based random text generation algorithm.
+
 var assert = require('chai').assert,
 	pacnamegen = require('../pacnamegen.js');
 

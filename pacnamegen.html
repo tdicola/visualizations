@@ -2,8 +2,9 @@
 <html>
 <head>
 	<title>Random PAC Generator</title>
-	<link rel="stylesheet" href="css/bootstrap.css">
-	<link rel="stylesheet" href="pacnamegen.css">
+	<link rel="shortcut icon" href="favicon.ico" />
+	<link rel="stylesheet" href="css/bootstrap.css" />
+	<link rel="stylesheet" href="pacnamegen.css" />
 	<script src="js/jquery-1.7.1.min.js"></script>
 	<script src="pacnamegen.js"></script>
 	<script src='http://connect.facebook.net/en_US/all.js'></script>
@@ -13,40 +14,36 @@
 	<div class="container">
 		<div class="row">
 			<div class="span12">
-				<h2>Random PAC (Political Action Committee) Name Generator</h2>
+				<h2>Random Political Action Committee (PAC) Name Generator</h2>
 				<div class="well">
-					<h2 id="name">Loading PAC data (~500kb)...</h2>
+					<h2 id="name">Loading PAC name data (~500kb)...</h2>
 				</div>
 				<div class="row">
 					<div class="span3">
 						<button id="generate" class="btn-success btn-large" disabled>Generate New Name</button>
 					</div>
-					<div class="span2 offset7">
-						<button id="share" class="btn" disabled>Share to Facebook</button>
+					<div class="span3 offset6">
+						<button id="share" class="btn pull-right" disabled>Share PAC on Facebook</button>
 					</div>
 				</div>
 			</div>
 		</div>
-
+		<div class="row">
+			<div class="span12">
+				<p><img id="wordcloud" src="pac_names_wordle.png"/></p>
+			</div>
+		</div>
 		<div class="row">
 			<div class="span12">
 				<hr />
-				<p><img src="pac_names_mix.png"/></p>
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="span12">
 				<p>Created by <a href="http://tdicola.github.com/">Tony DiCola</a> with data from the <a href="http://www.fec.gov/data/">FEC</a>.  More details coming soon.</p>
 			</div>
 		</div>
 	</div>
-
 	<script>
 		// Initialize Facebook UI
 		FB.init({appId: '261223303952102', status: true, cookie: true, xfbml: true});
 	</script>
-
 	<script type="text/javascript">
 	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
 	document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));

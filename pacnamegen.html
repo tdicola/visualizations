@@ -7,9 +7,6 @@
 	<script src="js/jquery-1.7.1.min.js"></script>
 	<script src="pacnamegen.js"></script>
 	<script src='http://connect.facebook.net/en_US/all.js'></script>
-	<script>
-	FB.init({appId: '261223303952102', status: true, cookie: true, xfbml: true});
-	</script>
 	<div id="fb-root"></div>
 </head>
 <body>
@@ -44,6 +41,13 @@
 			</div>
 		</div>
 	</div>
+
+	<script>
+		// Initialize Facebook UI
+		FB.init({appId: '261223303952102', status: true, cookie: true, xfbml: true});
+		$(document).ready(pacnamegen.initialize);
+	</script>
+
 	<script type="text/javascript">
 	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
 	document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));

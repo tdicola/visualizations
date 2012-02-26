@@ -1,19 +1,20 @@
 // pacnamegen.js by Tony DiCola
 // 2-23-2012
 //
-// Generate a random string of text based on the trigrams of political action committee names.
-
-"use strict";
-
-var trigrams, startKeys;
+// Generate a random string of text based on the trigrams of political action
+// committee names.
+var trigrams, startKeys, $, FB, document;
 
 // Return a random int between min and max, inclusive.
 function randomInt(min, max) {
+	"use strict";
 	return min + Math.floor(Math.random() * (max - min + 1));
 }
 
-// Generate a list of starting keys with at least threshold number of ending words.
+// Generate a list of starting keys with at least threshold number of ending
+// words.
 function genStartKeys(trigrams, threshold) {
+	"use strict";
 	var startKeys = [],
 		k;
 	// Loop through all keys of the trigram dataset.
@@ -25,9 +26,11 @@ function genStartKeys(trigrams, threshold) {
 	return startKeys;
 }
 
-// Generate a random string of text from tri-grams.  Try to create a string of text between minWords
-// and maxWords length, however the result might be smaller.
+// Generate a random string of text from trigrams.  Try to create a string of
+// text between minWords and maxWords length, however the result might be
+// smaller.
 function genRandomText(trigrams, minWords, maxWords) {
+	"use strict";
 	var max = randomInt(minWords, maxWords),
 		key = startKeys[randomInt(0, startKeys.length - 1)],
 		n = 2,
@@ -35,12 +38,14 @@ function genRandomText(trigrams, minWords, maxWords) {
 		words,
 		w;
 
-	// Loop while building the text until enough words are found or a trigram can't be found.
+	// Loop while building the text until enough words are found or a trigram
+	// can't be found.
 	while ((n < max) && trigrams.hasOwnProperty(key)) {
 		words = trigrams[key];
 		w = words[randomInt(0, words.length - 1)];
 		text = text + ' ' + w;
 		n += 1;
+		// Build the new key from the 2nd and 3rd words of the trigram
 		key = String(key).split(' ', 2)[1];
 		key = key + ' ' + w;
 	}
@@ -48,27 +53,37 @@ function genRandomText(trigrams, minWords, maxWords) {
 	return text;
 }
 
-// Load the tri-gram dataset and generate a random PAC name.
-$.getJSON('pac_trigrams.json', function (data) {
-	trigrams = data;
-	startKeys = genStartKeys(trigrams, 2);
+// Run code when the page is loaded and ready
+$(document).ready(function () {
+	"use strict";
 
-	$('#pacnamegen').text(genRandomText(trigrams, 5, 8));
-	$('#pacnamegen-button').click(function () {
-		$('#pacnamegen').text(genRandomText(trigrams, 5, 8));
-	});
+	// Load the trigram dataset and generate a random PAC name.
+	$.getJSON('pac_trigrams.json', function (data) {
+		trigrams = data;
+		startKeys = genStartKeys(trigrams, 2);
 
-	$('#sharetofacebook-button').click(function () {
-		FB.login(function (response) {
-			FB.ui({
-				method: 'feed',
-				link: 'http://tdicola.github.com/visualizations/pacnamegen.html',
-				picture: 'http://tdicola.github.com/visualizations/pac_names_mix_small.png',
-				name: 'Political Action Committee Name Generator',
-				caption: 'I just generated:',
-				description: $('#pacnamegen').text(),
-				redirect_uri: 'http://tdicola.github.com/visualizations/pacnamegen.html'
-			}, function (response) {});
-		}, { scope: 'publish_stream'});
+		$('#generate')
+			.click(function () {
+				$('#name').text(genRandomText(trigrams, 5, 8));
+			})
+			.removeAttr('disabled')
+			.click();
+
+		$('#share')
+			.click(function () {
+				FB.login(function (response) {
+					FB.ui({
+						method: 'feed',
+						link: 'http://tdicola.github.com/visualizations/pacnamegen.html',
+						picture: 'http://tdicola.github.com/visualizations/pac_names_mix_small.png',
+						name: 'Political Action Committee Name Generator',
+						caption: 'I just generated:',
+						description: $('#pacnamegen').text(),
+						redirect_uri: 'http://tdicola.github.com/visualizations/pacnamegen.html'
+					}, function (response) {});
+				}, { scope: 'publish_stream'});
+			})
+			.removeAttr('disabled');
 	});
 });
+

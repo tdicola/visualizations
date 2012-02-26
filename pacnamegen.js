@@ -79,7 +79,7 @@ if ($ !== undefined) {
 						FB.ui({
 							method: 'feed',
 							link: 'http://tdicola.github.com/visualizations/pacnamegen.html',
-							picture: 'http://tdicola.github.com/visualizations/pac_names_mix_small.png',
+							picture: 'http://tdicola.github.com/visualizations/pac_names_wordle_small.png',
 							name: 'Political Action Committee Name Generator',
 							caption: 'I just generated:',
 							description: $('#name').text(),

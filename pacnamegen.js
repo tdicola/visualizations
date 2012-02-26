@@ -78,7 +78,7 @@ $(document).ready(function () {
 						picture: 'http://tdicola.github.com/visualizations/pac_names_mix_small.png',
 						name: 'Political Action Committee Name Generator',
 						caption: 'I just generated:',
-						description: $('#pacnamegen').text(),
+						description: $('#name').text(),
 						redirect_uri: 'http://tdicola.github.com/visualizations/pacnamegen.html'
 					}, function (response) {});
 				}, { scope: 'publish_stream'});

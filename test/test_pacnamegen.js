@@ -1,7 +1,7 @@
-var assert = require('assert'),
+var assert = require('chai').assert,
 	pacnamegen = require('../pacnamegen.js');
 
-suite('PAC Name Gen', function () {
+suite('pacnamegen.js', function () {
 	var trigrams = { "foo bar": ["baz"],
 					 "bar baz": ["shaz"],
 					 "blah blah": ["blah", "meh"],
@@ -19,16 +19,18 @@ suite('PAC Name Gen', function () {
 	test('gen_start_keys returns keys with more endings than threshold', function () {
 		var startkeys = pacnamegen.gen_start_keys(trigrams, 2);
 		assert.equal(startkeys.length, 2);
+		assert.deepEqual(["test test2", "test2 test3"], startkeys)
 	});
 
 	test('gen_start_keys returns all keys when threshold is 0', function () {
 		var	startkeys = pacnamegen.gen_start_keys(trigrams, 0);
-		assert.equal(startkeys.length, 5);
+		assert.deepEqual(["foo bar", "bar baz", "blah blah", "test test2", "test2 test3"],
+						  startkeys);
 	});
 
 	test('gen_start_keys returns no keys when threshold is too high', function () {
 		var	startkeys = pacnamegen.gen_start_keys(trigrams, 5);
-		assert.equal(startkeys.length, 0);
+		assert.deepEqual([], startkeys);
 	});
 
 	test('gen_random_text generates at least minWords when possible', function () {

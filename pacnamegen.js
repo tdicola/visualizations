@@ -55,7 +55,7 @@ function gen_random_text(trigrams, startKeys, minWords, maxWords) {
 	return text;
 }
 
-// Check if running in browser
+// Check if running in browser (jquery is available)
 if ($ !== undefined) {
 	// Build experience when DOM is ready
 	$(document).ready(function () {
@@ -80,7 +80,7 @@ if ($ !== undefined) {
 							method: 'feed',
 							link: 'http://tdicola.github.com/visualizations/pacnamegen.html',
 							picture: 'http://tdicola.github.com/visualizations/pac_names_wordle_small.png',
-							name: 'Political Action Committee Name Generator',
+							name: 'Random Political Action Committee Name Generator',
 							caption: 'I just generated:',
 							description: $('#name').text(),
 							redirect_uri: 'http://tdicola.github.com/visualizations/pacnamegen.html'

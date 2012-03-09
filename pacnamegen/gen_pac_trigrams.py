@@ -8,15 +8,15 @@ associated trigram.
 Created by Tony DiCola tony@tonydicola.com
 February 20, 2012
 """
-import json, random
+import csv, json, random
 from itertools import imap
 
-INPUT_FILENAME = 'pacnames.txt'
+INPUT_FILENAME = 'CommitteeSummary2012.csv'
 OUTPUT_FILENAME = 'pac_trigrams.json'
 
-def process_line(line, trigrams):
-    """Split input line into words and record all the trigrams."""
-    words = line.split()
+def process_name(name, trigrams):
+    """Split input name into words and record all the trigrams."""
+    words = name.split()
     if len(words) > 2:
         w1, w2 = words[0:2]
         for w3 in words[2:]:
@@ -39,11 +39,18 @@ def random_string(maxwords):
     return text
 
 if __name__ == '__main__':
+    # Read PAC names
+    names = []
+    with open(INPUT_FILENAME, 'rb') as infile:
+        reader = csv.reader(infile)
+        reader.next() # Skip header row
+        names = [line[0] for line in reader]
+        print names[0]
+
     # Read trigrams from PAC names
     trigrams = {}
-    with open(INPUT_FILENAME, 'rt') as infile:
-        for line in infile:
-            process_line(line, trigrams)
+    for name in names:
+        process_name(name, trigrams)
 
     # Output trigram data to JSON file
     with open(OUTPUT_FILENAME, 'wt') as outfile:
